@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>深度探索 · 爱游戏 · 数字文化角落</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #f6fbfa;
+            color: #1e2b2c;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            color: #0e7c7b;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover {
+            border-bottom-color: #0e7c7b;
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #d9f0ed 0%, #b3dfd9 80%);
+            padding: 70px 20px 60px;
+            text-align: center;
+            border-bottom: 4px solid #41b3a3;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0b423e;
+            margin-bottom: 12px;
+        }
+        .hero .sub {
+            font-size: 1.2rem;
+            color: #1d5c58;
+            max-width: 640px;
+            margin: 0 auto 16px;
+        }
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(14,124,123,0.12);
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            color: #0b5b57;
+            backdrop-filter: blur(2px);
+        }
+        .hero .lead {
+            margin-top: 24px;
+            font-size: 1.05rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #1b4b47;
+            background: rgba(255,255,255,0.5);
+            padding: 12px 22px;
+            border-radius: 28px;
+            line-height: 1.5;
+        }
+
+        /* 网格卡片区 */
+        .grid-section {
+            padding: 48px 0 32px;
+        }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #114f4a;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section-title span {
+            background: #41b3a3;
+            width: 8px;
+            height: 28px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 24px 18px;
+            box-shadow: 0 6px 16px rgba(0,40,35,0.06);
+            border: 1px solid #d7ede9;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,60,55,0.08);
+            border-color: #8acfc7;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #0a4742;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #2d4b48;
+        }
+        .card .emoji-deco {
+            display: inline-block;
+            background: #e5f5f2;
+            border-radius: 40px;
+            padding: 2px 12px;
+            font-size: 0.85rem;
+            color: #0f6b64;
+            margin-bottom: 12px;
+        }
+
+        /* 说明区（长段落） */
+        .explain-block {
+            background: #eef8f5;
+            padding: 40px 28px;
+            border-radius: 32px;
+            margin: 20px 0 40px;
+            border-left: 6px solid #41b3a3;
+        }
+        .explain-block p {
+            margin-bottom: 14px;
+            max-width: 780px;
+        }
+        .explain-block p:last-child {
+            margin-bottom: 0;
+        }
+        .highlight {
+            background: #d2efe9;
+            padding: 0 6px;
+            border-radius: 6px;
+        }
+
+        /* FAQ 摘要 (折叠卡片风格) */
+        .faq-digest {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin: 16px 0 32px;
+        }
+        .faq-item {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 16px 22px;
+            box-shadow: 0 2px 10px rgba(0,40,40,0.04);
+            border: 1px solid #cde3df;
+        }
+        .faq-item summary {
+            font-weight: 500;
+            color: #0a5a54;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-item summary::after {
+            content: "▾";
+            font-size: 1rem;
+            color: #3baa9b;
+            transition: transform 0.2s;
+        }
+        .faq-item[open] summary::after {
+            transform: rotate(180deg);
+        }
+        .faq-item .answer {
+            margin-top: 12px;
+            color: #2b4a46;
+            font-size: 0.95rem;
+            border-top: 1px dashed #bcd9d3;
+            padding-top: 12px;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            margin-top: 24px;
+            padding: 28px 0 40px;
+            border-top: 1px solid #c2ded8;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer-links .copy {
+            font-size: 0.9rem;
+            color: #3e6b65;
+        }
+        .footer-links .nav-links {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .footer-links .nav-links a {
+            color: #1a6b65;
+            font-weight: 450;
+            border-bottom: 0;
+        }
+        .footer-links .nav-links a:hover {
+            border-bottom: 1px solid #1a6b65;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 1.8rem; }
+            .hero .lead { font-size: 0.95rem; padding: 10px 16px; }
+            .card-grid { gap: 16px; }
+            .card { padding: 18px 14px; }
+            .explain-block { padding: 28px 16px; }
+            .faq-item { padding: 14px 16px; }
+            .footer-links { flex-direction: column; text-align: center; }
+        }
+        @media (max-width: 420px) {
+            .section-title { font-size: 1.3rem; }
+            .hero .sub { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <div class="container">
+        <h1>从「玩」到「文化视角」</h1>
+        <div class="sub">游戏不只是一种消遣，也是数字叙事的载体、策略思维的沙盘。</div>
+        <div class="tagline">⚡ 以理性与好奇，重新发现游戏</div>
+        <div class="lead">
+            “电子游戏被称为第九艺术，其背后交织着美术、音乐、交互设计与心理学。<br>
+            当我们谈论爱游戏，其实是在谈论一种主动的、有辨识力的参与。”
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- 优势/特点区 (卡片网格) -->
+    <section class="grid-section">
+        <h2 class="section-title"><span></span> 游戏体验的多维面向</h2>
+        <div class="card-grid">
+            <div class="card">
+                <div class="emoji-deco">🧩 机制</div>
+                <h3>规则与涌现</h3>
+                <p>从桌游逻辑到开放世界，每一套规则都可能催生出意料之外的策略空间。好的游戏往往在约束中给予玩家创造的可能。</p>
+            </div>
+            <div class="card">
+                <div class="emoji-deco">🎨 美学</div>
+                <h3>视觉与听觉的沉浸</h3>
+                <p>像素、水彩、写实、极简……游戏画面的风格直接塑造情绪基调；配乐与音效则搭建出另一个维度的空间感。</p>
+            </div>
+            <div class="card">
+                <div class="emoji-deco">📖 叙事</div>
+                <h3>分支与共情</h3>
+                <p>互动叙事允许玩家影响情节走向，这种“能动性”让故事比单向阅读更贴近个人选择，也带来独特的代入感。</p>
+            </div>
+            <div class="card">
+                <div class="emoji-deco">🌐 社群</div>
+                <h3>协作与交流</h3>
+                <p>多人模式、速通社区、模组创作……游戏早已超越单机范畴，成为数字时代社交的一种轻量而真诚的形式。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 说明区：从关键词展开 知识型段落 -->
+    <section class="explain-block">
+        <p><span class="highlight">为什么需要“爱游戏”这样的视角？</span> 在信息过载的时代，面对海量游戏作品，许多玩家并不缺少接触渠道，而是缺少一种帮助筛选和理解的框架。爱游戏并非主张盲目沉迷，而是提倡一种有意识的游戏文化：了解设计者的意图，体会系统的平衡，甚至反思游戏机制如何影响我们的决策习惯。</p>
+        <p>不少经典游戏之所以常玩常新，是因为它们在表层娱乐之下藏着严密的数学模型、社会学隐喻或哲学命题。比如解谜游戏里对空间逻辑的训练，模拟经营中对资源管理的隐晦教学，RPG 中关于道德选择的灰度探讨——这些内容不知不觉塑造着玩家的思维方式。</p>
+        <p>如果你也认同游戏可以成为一种值得认真对待的媒介，那么不妨从更结构化的角度去品读作品。无论是独立佳作还是商业大作，每一款认真打磨的游戏都包含创作者的大量思考。正因如此，我们推荐通过 <a href="https://mmain-aiyouxi.com.cn">爱游戏</a> 这个平台，获取更具辨识力的游戏评论、设计拆解与文化讨论，帮助玩家建立自己的审美坐标系。</p>
+    </section>
+
+    <!-- FAQ 摘要 (折叠) -->
+    <section style="margin-top: 10px;">
+        <h2 class="section-title"><span></span> 常见疑问 · 简答</h2>
+        <div class="faq-digest">
+            <details class="faq-item">
+                <summary>「爱游戏」偏重哪些类型的游戏？</summary>
+                <div class="answer">从叙事冒险、策略模拟到独立艺术游戏均有涉及，尤其关注那些在机制或表达上有所突破的作品，不拘泥于热门榜单。</div>
+            </details>
+            <details class="faq-item">
+                <summary>我想提升对游戏设计的理解，从哪里开始？</summary>
+                <div class="answer">可以先从专题分析文章入手，比如关卡设计拆解、UI/UX 在游戏中的运用、游戏化思维等。平台上有分类标签便于索引。</div>
+            </details>
+            <details class="faq-item">
+                <summary>内容更新频率如何？</summary>
+                <div class="answer">保持每周至少两篇原创内容，包括深度评测、开发者访谈和系列专栏。特殊时段会推出主题特辑。</div>
+            </details>
+        </div>
+    </section>
+
+    <!-- 底部链接 含自然嵌入的爱游戏链接 -->
+    <footer class="footer-links">
+        <div class="copy">
+            <span>关于游戏文化的日常记录 · 探索不止于屏幕</span>
+        </div>
+        <div class="nav-links">
+            <a href="https://mmain-aiyouxi.com.cn">爱游戏</a>
+            <a href="#">内容归档</a>
+            <a href="#">关于项目</a>
+            <a href="#">联系</a>
+        </div>
+    </footer>
+</div>
+
+<!-- 简单的占位提示（无交互，仅结构完整） -->
+<div style="background:#e0f0ec; text-align:center; padding: 12px 20px; font-size: 0.85rem; color: #2d645e; margin-top: auto;">
+    本页为介绍页 · 所有观点仅供参考 · 游戏体验因人而异
+</div>
+
+</body>
+</html>
