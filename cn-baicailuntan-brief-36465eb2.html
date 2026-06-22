@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>白菜论坛 · 持续关注的交流社区</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #fafafa;
+      color: #1e1e1e;
+      line-height: 1.7;
+      padding: 0 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page {
+      max-width: 700px;
+      width: 100%;
+      padding: 2.5rem 0 4rem 0;
+    }
+
+    /* 顶端导航 —— 极简 */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 0 2rem 0;
+      border-bottom: 1px solid #eaeaea;
+      margin-bottom: 2.8rem;
+    }
+
+    .top-nav .site-name {
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      font-size: 1rem;
+      color: #2b2b2b;
+    }
+
+    .top-nav .nav-links a {
+      text-decoration: none;
+      color: #4a4a4a;
+      font-size: 0.9rem;
+      margin-left: 1.8rem;
+      transition: color 0.15s;
+    }
+
+    .top-nav .nav-links a:hover {
+      color: #000;
+    }
+
+    /* hero —— 轻量，无大按钮 */
+    .hero {
+      margin-bottom: 3.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 450;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+      color: #111;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      color: #5c5c5c;
+      max-width: 85%;
+    }
+
+    /* 通用标题 */
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 450;
+      margin-bottom: 1.2rem;
+      color: #1a1a1a;
+      border-left: 3px solid #aaa;
+      padding-left: 1rem;
+    }
+
+    /* 三个场景卡片 —— 极简卡片 */
+    .scene-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin-bottom: 3.2rem;
+    }
+
+    .scene-card {
+      background: #ffffff;
+      border: 1px solid #e9e9e9;
+      border-radius: 14px;
+      padding: 1.6rem 1.6rem 1.6rem 1.8rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .scene-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .scene-card h3 {
+      font-size: 1.1rem;
+      font-weight: 470;
+      margin-bottom: 0.6rem;
+      color: #222;
+    }
+
+    .scene-card p {
+      font-size: 0.93rem;
+      color: #3e3e3e;
+      line-height: 1.65;
+    }
+
+    /* 常见说明 / FAQ 摘要 */
+    .faq-summary {
+      margin: 2.8rem 0 3rem 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #ececec;
+      padding: 0.9rem 0;
+    }
+
+    .faq-item:first-child {
+      border-top: 1px solid #ececec;
+    }
+
+    .faq-question {
+      font-weight: 470;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+      color: #111;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: #4f4f4f;
+      margin-top: 0.15rem;
+      line-height: 1.5;
+    }
+
+    .faq-answer a {
+      color: #1e1e1e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #cbcbcb;
+      transition: text-decoration-color 0.15s;
+    }
+
+    .faq-answer a:hover {
+      text-decoration-color: #111;
+    }
+
+    /* 再次访问提示 */
+    .revisit-note {
+      background: #f4f4f4;
+      padding: 1.8rem 1.8rem;
+      border-radius: 20px;
+      margin-bottom: 2.5rem;
+      font-size: 0.95rem;
+      color: #2c2c2c;
+      border: 1px solid #e2e2e2;
+    }
+
+    .revisit-note strong {
+      font-weight: 500;
+      color: #111;
+    }
+
+    .revisit-note a {
+      color: #1e1e1e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #b0b0b0;
+    }
+
+    .revisit-note a:hover {
+      text-decoration-color: #111;
+    }
+
+    /* 页脚 */
+    .footer {
+      border-top: 1px solid #eaeaea;
+      padding-top: 1.8rem;
+      margin-top: 1.2rem;
+      font-size: 0.82rem;
+      color: #7b7b7b;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    /* 响应式 */
+    @media (max-width: 500px) {
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .top-nav .nav-links a {
+        margin-left: 0;
+        margin-right: 1.4rem;
+      }
+
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero .sub {
+        max-width: 100%;
+      }
+
+      .scene-card {
+        padding: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- 顶部导航 -->
+  <nav class="top-nav">
+    <span class="site-name">白菜论坛</span>
+    <div class="nav-links">
+      <a href="#">交流</a>
+      <a href="#">动态</a>
+      <a href="#">收藏</a>
+    </div>
+  </nav>
+
+  <!-- hero 区域 -->
+  <div class="hero">
+    <h1>再次回到这里，<br>就像翻开一本常读常新的笔记。</h1>
+    <div class="sub">
+      无需反复查找，收藏一次，每次都能轻松找到 <a href="https://cn-baicailuntan.com" style="color:#1e1e1e; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; text-decoration-color: #b0b0b0;">白菜论坛</a>。
+    </div>
+  </div>
+
+  <!-- 再次访问 & 收藏提示 -->
+  <div class="revisit-note">
+    <strong>把这里加入书签</strong> —— 无论是电脑还是手机，只需一次收藏，下次直接打开。  
+    当你想要浏览轻松话题、看看新近讨论，或只是习惯性刷新某个板块，  
+    收藏夹里那个熟悉的 <a href="https://cn-baicailuntan.com">白菜论坛</a> 总会在。
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="section-title">几个常驻的日常场景</div>
+  <div class="scene-grid">
+    <div class="scene-card">
+      <h3>午间 · 随便翻翻</h3>
+      <p>工作间隙打开论坛，看看今日热帖或新回复，不用刻意找话题，首页就足够丰富。没有强推送，只有自然浮现的讨论。</p>
+    </div>
+    <div class="scene-card">
+      <h3>深夜 · 沉浸阅读</h3>
+      <p>安静的时候更适合逐条翻阅某个板块的旧帖。从回帖里能看到不同视角，有时比主帖更耐读。论坛的节奏由自己控制。</p>
+    </div>
+    <div class="scene-card">
+      <h3>收藏夹 · 常回常新</h3>
+      <p>把 <a href="https://cn-baicailuntan.com" style="color:#222; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; text-decoration-color: #b0b0b0;">白菜论坛</a> 放进浏览器收藏夹或手机主屏，每次点击都是一次熟悉的抵达。不必担心内容重复，讨论一直在更新。</p>
+    </div>
+  </div>
+
+  <!-- 常见说明（FAQ摘要） -->
+  <div class="faq-summary">
+    <div class="section-title">一些你可能想问的</div>
+
+    <div class="faq-item">
+      <div class="faq-question">为什么我上次看到的帖子这次找不到了？</div>
+      <div class="faq-answer">板块每天都有新内容，旧帖会自然下沉。如果想保留某个讨论，可以使用浏览器的书签功能收藏帖子链接，或自己记下标题关键词。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">需要注册才能浏览所有内容吗？</div>
+      <div class="faq-answer">大部分板块对访客可见，部分互动功能可能需要注册账号。具体可以试试直接访问 <a href="https://cn-baicailuntan.com">白菜论坛</a> 了解。</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">手机上看论坛方便吗？</div>
+      <div class="faq-answer">页面针对移动端做了适配，字号和间距都考虑了阅读感受。你也可以把链接添加到手机主屏，像使用一个小程序一样随时打开。</div>
+    </div>
+  </div>
+
+  <!-- 页脚 -->
+  <div class="footer">
+    <span>© 白菜论坛 · 持续关注</span>
+    <span>收藏 · 回看 · 自然交流</span>
+  </div>
+</div>
+</body>
+</html>
